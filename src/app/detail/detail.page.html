@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slots="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mesa: {{student.mesa}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list>
+      <ion-fab-button color="success" (click)='updateState(student)'>
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="danger" (click)='delete(student)'>
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="warning">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-card text-center>
+    <ion-card-header>
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title><strong>La orden es:</strong></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let orders of student.pedidos; index as i">
+        <p>Pedidos :<strong>{{student.pedidos[i]}}</strong></p>
+        <p>Cantidades :<strong>{{student.cantidad[i]}}</strong></p>
+        <ion-chip color="secondary" *ngIf="student.active" class="ion-float-center" side="end">
+          <ion-label>Active</ion-label>
+        </ion-chip>
+        <ion-chip color="danger" *ngIf="!student.active" class="ion-float-center" side="end">
+          <ion-label>Inactive</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
